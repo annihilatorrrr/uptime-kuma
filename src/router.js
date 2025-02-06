@@ -18,6 +18,8 @@ import NotFound from "./pages/NotFound.vue";
 import DockerHosts from "./components/settings/Docker.vue";
 import MaintenanceDetails from "./pages/MaintenanceDetails.vue";
 import ManageMaintenance from "./pages/ManageMaintenance.vue";
+import APIKeys from "./components/settings/APIKeys.vue";
+import SetupDatabase from "./pages/SetupDatabase.vue";
 
 // Settings - Sub Pages
 import Appearance from "./components/settings/Appearance.vue";
@@ -28,8 +30,8 @@ import Tags from "./components/settings/Tags.vue";
 import MonitorHistory from "./components/settings/MonitorHistory.vue";
 const Security = () => import("./components/settings/Security.vue");
 import Proxies from "./components/settings/Proxies.vue";
-import Backup from "./components/settings/Backup.vue";
 import About from "./components/settings/About.vue";
+import RemoteBrowsers from "./components/settings/RemoteBrowsers.vue";
 
 const routes = [
     {
@@ -66,11 +68,17 @@ const routes = [
                                     },
                                 ],
                             },
+                        ],
+                    },
+                    {
+                        path: "/add",
+                        component: EditMonitor,
+                        children: [
                             {
-                                path: "/add",
+                                path: "/clone/:id",
                                 component: EditMonitor,
                             },
-                        ],
+                        ]
                     },
                     {
                         path: "/list",
@@ -109,16 +117,20 @@ const routes = [
                                 component: DockerHosts,
                             },
                             {
+                                path: "remote-browsers",
+                                component: RemoteBrowsers,
+                            },
+                            {
                                 path: "security",
                                 component: Security,
                             },
                             {
-                                path: "proxies",
-                                component: Proxies,
+                                path: "api-keys",
+                                component: APIKeys,
                             },
                             {
-                                path: "backup",
-                                component: Backup,
+                                path: "proxies",
+                                component: Proxies,
                             },
                             {
                                 path: "about",
@@ -157,6 +169,10 @@ const routes = [
     {
         path: "/setup",
         component: Setup,
+    },
+    {
+        path: "/setup-database",
+        component: SetupDatabase,
     },
     {
         path: "/status-page",
